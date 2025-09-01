@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Установка скрипта</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .install-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #28a745; /* Зеленый цвет, как у Tampermonkey */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .install-button:hover {
+            background-color: #218838;
+        }
+        .note {
+             margin-top: 20px;
+             font-size: 14px;
+             color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Установка пользовательского скрипта</h1>
+        <p>Нажмите кнопку ниже, чтобы установить скрипт для Tampermonkey.</p>
+        <p><strong>Убедитесь, что у вас установлен менеджер пользовательских скриптов (например, Tampermonkey).</strong></p>
+
+        <!-- Замените URL ниже на ваш "сырой" URL -->
+        <a class="install-button" href="https://raw.githubusercontent.com/your-username/your-repo-name/main/your-script.user.js" target="_blank" rel="noopener noreferrer">
+            Установить скрипт
+        </a>
+        <p class="note">После клика Tampermonkey должен автоматически открыть окно установки.</p>
+    </div>
+</body>
+</html>
