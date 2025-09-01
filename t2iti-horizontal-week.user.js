@@ -189,28 +189,28 @@
                 font-size: inherit; /* Наследуем размер шрифта от таблицы */
             }
 
-/* Стили для первой колонки (время) - ЗАКРЕПЛЕНА */
-.wTable td:first-child, .wTable th:first-child {
-     position: sticky !important; /* Закрепляем */
-     left: -1px !important; /* Прилипает к левому краю контейнера */
-     z-index: 2 !important; /* Поверх других ячеек */
-     background-color: #ffffff !important; /* Фон, чтобы не было артефактов при скролле */
-     /* --- Новое --- */
-     box-shadow: inset -2px 0 0px #ffffff, -2px 0 0px #ffffff; /* Скрыть 1px артефакт слева */
-     /* --- Конец нового --- */
-     min-width: 75px !important; /* Минимальная ширина колонки времени */
-     width: auto !important;
-     max-width: none !important;
-     font-size: 12px !important; /* Немного меньший шрифт для времени */
-     padding: 4px 2px !important; /* Уменьшаем padding для времени */
-     font-weight: bold !important; /* Сделаем время немного жирнее для выделения */
-     /* Убираем стили, которые могут мешать адаптации высоты */
-     height: auto !important;
-     /* Центрирование текста в ячейке времени - используем display: table-cell как нативный способ */
-     display: table-cell !important;
-     vertical-align: middle !important; /* Центрирование по вертикали внутри ячейки */
-     text-align: center !important; /* Центрирование по горизонтали внутри ячейки */
-}
+            /* Стили для первой колонки (время) - ЗАКРЕПЛЕНА */
+            .wTable td:first-child, .wTable th:first-child {
+                 position: sticky !important; /* Закрепляем */
+                 left: -1px !important; /* Прилипает к левому краю контейнера */
+                 z-index: 2 !important; /* Поверх других ячеек */
+                 background-color: #ffffff !important; /* Фон, чтобы не было артефактов при скролле */
+                 /* --- Новое --- */
+                 box-shadow: inset -2px 0 0px #ffffff, -2px 0 0px #ffffff; /* Скрыть 1px артефакт слева */
+                 /* --- Конец нового --- */
+                 min-width: 75px !important; /* Минимальная ширина колонки времени */
+                 width: auto !important;
+                 max-width: none !important;
+                 font-size: 12px !important; /* Немного меньший шрифт для времени */
+                 padding: 4px 2px !important; /* Уменьшаем padding для времени */
+                 font-weight: bold !important; /* Сделаем время немного жирнее для выделения */
+                 /* Убираем стили, которые могут мешать адаптации высоты */
+                 height: auto !important;
+                 /* Центрирование текста в ячейке времени - используем display: table-cell как нативный способ */
+                 display: table-cell !important;
+                 vertical-align: middle !important; /* Центрирование по вертикали внутри ячейки */
+                 text-align: center !important; /* Центрирование по горизонтали внутри ячейки */
+            }
             /* Убедимся, что текст внутри .tTime тоже центрирован */
             .tTime {
                  display: flex !important;
