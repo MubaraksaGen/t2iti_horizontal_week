@@ -192,7 +192,7 @@
 /* Стили для первой колонки (время) - ЗАКРЕПЛЕНА */
 .wTable td:first-child, .wTable th:first-child {
      position: sticky !important; /* Закрепляем */
-     left: 0 !important; /* Прилипает к левому краю контейнера */
+     left: -1px !important; /* Прилипает к левому краю контейнера */
      z-index: 2 !important; /* Поверх других ячеек */
      background-color: #ffffff !important; /* Фон, чтобы не было артефактов при скролле */
      /* --- Новое --- */
