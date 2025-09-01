@@ -113,6 +113,7 @@
                 --blue: rgb(236, 244, 255);
                 --other: white;
             }
+
             /* Убедимся, что таблица может расти по размеру содержимого */
             #mTable {
                 table-layout: auto; /* Автоматический расчет ширины столбцов на основе содержимого */
@@ -158,16 +159,17 @@
                 z-index: 2 !important; /* Поверх других ячеек */
                 background-color: #ffffff !important; /* Фон, чтобы не было артефактов при скролле */
                 box-shadow: inset -2px 0 0px #ffffff, -2px 0 0px #ffffff; /* Скрыть 1px артефакт слева */
-                min-width: 75px !important; /* Минимальная ширина колонки времени */
+                min-width: 45px !important; /* Минимальная ширина колонки времени */
                 width: auto !important;
                 max-width: none !important;
-                font-size: 12px !important; /* Немного меньший шрифт для времени */
-                padding: 4px 2px !important; /* Уменьшаем padding для времени */
+                font-size: 16px !important; /* Немного меньший шрифт для времени */
+                padding: 2px 2px !important; /* Уменьшаем padding для времени */
                 font-weight: bold !important; /* Сделаем время немного жирнее для выделения */
                 height: auto !important;
                 display: table-cell !important;
                 vertical-align: middle !important; /* Центрирование по вертикали внутри ячейки */
                 text-align: center !important; /* Центрирование по горизонтали внутри ячейки */
+                font-family: "Segoe UI Semibold", sans-serif !important;
             }
             .tTime {
                 display: flex !important;
@@ -256,25 +258,7 @@
                 line-height: inherit !important;
             }
 
-            /* Медиа-запросы */
-            @media screen and (max-width: 768px) {
-                #mTable { font-size: 12px !important; min-width: 500px !important; }
-                .wTable th, .wTable td { min-height: 75px !important; min-width: 90px !important; padding: 3px !important; }
-                .wTable td:first-child, .wTable th:first-child { min-width: 65px !important; font-size: 11px !important; background-color: #f9f9f9 !important; }
-                .pair_container { min-height: 70px !important; padding: 2px !important; }
-                .pair_container #name p, .pair_container #auditory, .pair_container #teacher { font-size: inherit !important; padding: 0px 1px !important; }
-                .centered-title { font-size: 16px !important; }
-                .colortype { font-size: 11px !important; min-width: 90px !important; padding: 3px 5px !important; }
-            }
-            @media screen and (max-width: 480px) {
-                #mTable { font-size: 11px !important; min-width: 400px !important; }
-                .wTable td:first-child, .wTable th:first-child { min-width: 55px !important; font-size: 10px !important; background-color: #f0f0f0 !important; }
-                .wTable th, .wTable td { min-height: 70px !important; min-width: 80px !important; padding: 2px !important; }
-                .pair_container { min-height: 65px !important; padding: 2px !important; }
-                .pair_container #name p, .pair_container #auditory, .pair_container #teacher { font-size: inherit !important; padding: 0px 1px !important; }
-                .centered-title { font-size: 14px !important; }
-                .colortype { font-size: 10px !important; min-width: 80px !important; padding: 2px 4px !important; }
-            }
+
 
             /* Убедимся, что контейнер ints не ограничивает ширину */
             .ints { align-items: center; justify-content: center; display: flex; flex-direction: column; width: 100%; max-width: 100%; overflow-x: visible; padding: 0 5px; box-sizing: border-box; }
