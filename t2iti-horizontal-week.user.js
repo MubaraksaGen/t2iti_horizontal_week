@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         Расписание ИТИ - Горизонтальная таблица (v14 - Восстановление CSS)
+// @name         Расписание ИТИ - Горизонтальная таблица (V1.16 - Оптимизация)
 // @namespace    http://tampermonkey.net/
-// @version      1.14
-// @description  Принудительно отображает горизонтальную таблицу. Закреплен столбец времени. Текст центрирован. Перестановка кнопок через CSS. Восстановлены детальные CSS-стили таблицы.
-// @author       You
+// @version      1.16
+// @description  Принудительно отображает горизонтальную таблицу. Закреплен столбец времени. Текст центрирован. Перестановка кнопок через CSS.
+// @author       MubaraksaGen
 // @match        https://t2iti.khsu.ru/week*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=khsu.ru
 // @grant        none
@@ -61,6 +61,58 @@
             childNodes.forEach(node => {
                 if (node.nodeType === 3 && node.textContent.trim()) {
                     applySmartWordWrapToTextNode(node);
+                }
+            });
+        });
+    }
+
+    // Функция для обработки групп в ячейке
+    function processGroupLinks() {
+        // Ищем все pair_container элементы
+        const pairContainers = document.querySelectorAll('.pair_container');
+
+        pairContainers.forEach(container => {
+            // Находим все p теги внутри контейнера
+            const pTags = container.querySelectorAll('p');
+
+            pTags.forEach(pTag => {
+                // Проверяем, содержит ли p тег ссылки на группы
+                if (pTag.innerHTML.includes('group-link')) {
+                    // Получаем все ссылки внутри этого p тега
+                    const links = pTag.querySelectorAll('a.group-link');
+
+                    if (links.length > 0) {
+                        // Создаем новый контейнер для групп
+                        const groupsContainer = document.createElement('div');
+                        groupsContainer.className = 'groups-wrapper';
+
+                        // Создаем строки по 2 группы
+                        for (let i = 0; i < links.length; i += 2) {
+                            const row = document.createElement('div');
+                            row.className = 'group-row';
+
+                            // Добавляем первую группу
+                            if (links[i]) {
+                                row.appendChild(links[i].cloneNode(true));
+                            }
+
+                            // Добавляем разделитель если есть вторая группа
+                            if (i + 1 < links.length && links[i + 1]) {
+                                const separator = document.createElement('span');
+                                separator.textContent = ', ';
+                                separator.className = 'group-separator';
+                                row.appendChild(separator);
+
+                                // Добавляем вторую группу
+                                row.appendChild(links[i + 1].cloneNode(true));
+                            }
+
+                            groupsContainer.appendChild(row);
+                        }
+
+                        // Заменяем оригинальный p тег новым контейнером
+                        pTag.parentNode.replaceChild(groupsContainer, pTag);
+                    }
                 }
             });
         });
@@ -258,7 +310,29 @@
                 line-height: inherit !important;
             }
 
+            /* Стили для групп */
+            .groups-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                padding: 2px 0;
+            }
 
+            .group-row {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                margin: 1px 0;
+                flex-wrap: wrap;
+                gap: 2px;
+            }
+
+            .group-separator {
+                margin: 0 2px;
+                color: #666;
+            }
 
             /* Убедимся, что контейнер ints не ограничивает ширину */
             .ints { align-items: center; justify-content: center; display: flex; flex-direction: column; width: 100%; max-width: 100%; overflow-x: visible; padding: 0 5px; box-sizing: border-box; }
@@ -353,25 +427,86 @@
             setTimeout(() => {
                 try {
                     applySmartWordWrap();
-                    console.log("Умный перенос текста применен (v14).");
+                    processGroupLinks();
+                    console.log("Умный перенос текста и обработка групп применены (v16).");
                 } catch (e) {
-                    console.error("Ошибка при применении умного переноса:", e);
+                    console.error("Ошибка при применении умного переноса или обработке групп:", e);
                 }
             }, 150);
         }
     }
 
+    // Добавляем дополнительную проверку для обработки групп
+    function delayedGroupProcessing() {
+        setTimeout(() => {
+            processGroupLinks();
+            console.log("Дополнительная обработка групп выполнена");
+        }, 500);
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => waitForElement('#mTable', updateTable));
+        document.addEventListener('DOMContentLoaded', () => {
+            waitForElement('#mTable', updateTable);
+            // Также запускаем дополнительную обработку через некоторое время
+            setTimeout(delayedGroupProcessing, 2000);
+        });
     } else {
         waitForElement('#mTable', updateTable);
+        setTimeout(delayedGroupProcessing, 2000);
     }
 
     // MutationObserver для отслеживания изменений в DOM
-    const observer = new MutationObserver(function() {
-        waitForElement('#mTable', updateTable);
-    });
+    const observer = new MutationObserver(function(mutations) {
+    // Only update if there are actual structural changes to the schedule table
+    let shouldUpdate = false;
 
-    observer.observe(document.body, { childList: true, subtree: true });
+    for (const mutation of mutations) {
+        // Check if the change involves elements we care about
+        if (mutation.type === 'childList') {
+            for (const node of mutation.addedNodes) {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    // Check if added node is part of our schedule structure
+                    if (node.id === 'mTable' ||
+                        node.classList?.contains('pair_container') ||
+                        node.querySelector?.('.pair_container')) {
+                        shouldUpdate = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!shouldUpdate) {
+                // Also check if any of the changed nodes are inside schedule containers
+                for (const node of mutation.removedNodes) {
+                    if (node.nodeType === Node.ELEMENT_NODE &&
+                        (node.id === 'mTable' ||
+                         node.classList?.contains('pair_container'))) {
+                        shouldUpdate = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // For attribute changes, only update if they affect our target elements
+        if (mutation.type === 'attributes' &&
+            (mutation.target.id === 'mTable' ||
+             mutation.target.classList?.contains('pair_container') ||
+             mutation.target.closest?.('.pair_container'))) {
+            shouldUpdate = true;
+        }
+    }
+
+    if (shouldUpdate) {
+        waitForElement('#mTable', updateTable);
+    }
+});
+
+observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['class', 'style', 'id']
+});
 
 })();
