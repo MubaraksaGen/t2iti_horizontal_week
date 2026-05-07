@@ -18,8 +18,8 @@
 1. Установите Tampermonkey в ваш браузер.
 2. Нажмите на кнопку ниже, чтобы установить скрипт:
 
-[![Установить скрипт Tampermonkey](https://assets.googlegpt.io/images/buttons/greasy-fork/install/this-script.svg)](https://github.com/MubaraksaGen/t2iti_horizontal_week/raw/refs/heads/main/t2iti-horizontal-week.user.js)
-[![Как установить](https://assets.googlegpt.io/images/buttons/greasy-fork/help.svg)](#-installation)
+[![Установить скрипт Tampermonkey]](https://github.com/MubaraksaGen/t2iti_horizontal_week/raw/refs/heads/main/t2iti-horizontal-week.user.js)
+[![Как установить]](https://greasyfork.org/ru/help/installing-user-scripts)
 
 ---
 **Примечание:** Если после обновления сайта скрипт перестанет работать — отключите его в настройках Tampermonkey.
