@@ -3,60 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Установка скрипта</title>
+    <title>Горизонтальный список недели - Установка</title>
     <style>
+        :root {
+            --primary-color: #28a745;
+            --primary-hover: #218838;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --secondary-text: #666666;
+            --accent-blue: #007bff;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
-        }
-        .container {
-            text-align: center;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+
+        .container {
+            text-align: left; /* Выравнивание текста по левому краю для удобства чтения */
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
         h1 {
-            color: #333;
+            color: var(--text-color);
+            margin: 0 0 10px 0;
+            font-size: 24px;
         }
+
+        .version-badge {
+            display: inline-block;
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            line-height: 1.6;
+            color: var(--secondary-text);
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--accent-blue);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .features-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .features-list li {
+            margin-bottom: 8px;
+        }
+
+        .install-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
         .install-button {
             display: inline-block;
-            padding: 15px 30px;
+            padding: 16px 32px;
             font-size: 18px;
+            font-weight: 600;
             color: white;
-            background-color: #28a745; /* Зеленый цвет, как у Tampermonkey */
+            background-color: var(--primary-color);
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             text-decoration: none;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);
         }
+
         .install-button:hover {
-            background-color: #218838;
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(40, 167, 69, 0.3);
         }
-        .note {
-             margin-top: 20px;
-             font-size: 14px;
-             color: #666;
+
+        .install-button:active {
+            transform: translateY(0);
+        }
+
+        .requirements {
+            font-size: 14px;
+            color: var(--secondary-text);
+            margin-top: 10px;
+        }
+
+        .warning-box {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Установка пользовательского скрипта</h1>
-        <p>Нажмите кнопку ниже, чтобы установить скрипт для Tampermonkey.</p>
-        <p><strong>Убедитесь, что у вас установлен менеджер пользовательских скриптов (например, Tampermonkey).</strong></p>
+        <header>
+            <span class="version-badge">Обновлено: 07.05.2026</span>
+            <h1>Горизонтальный список недели</h1>
+            <p style="margin: 5px 0 0 0; color: #666;">Для мобильной версии сайта</p>
+        </header>
 
-        <!-- Замените URL ниже на ваш "сырой" URL -->
-        <a class="install-button" href="https://github.com/MubaraksaGen/t2iti_horizontal_week/raw/refs/heads/main/t2iti-horizontal-week.user.js" target="_blank" rel="noopener noreferrer">
-            Установить скрипт
-        </a>
-        <p class="note">После клика Tampermonkey должен автоматически открыть окно установки.</p>
+        <div class="description">
+            <p>Этот пользовательский скрипт (UserScript) возвращает удобный горизонтальный вид списка дней недели в мобильной версии интерфейса. Исправляет проблемы с новой версткой, делая навигацию по расписанию более привычной и компактной.</p>
+        </div>
+
+        <div class="features-list">
+            <strong>Что делает скрипт:</strong>
+            <ul>
+                <li>Преобразует вертикальный список дней в горизонтальный скролл.</li>
+                <li>Адаптирует CSS под изменения в структуре сайта.</li>
+                <li>Улучшает читаемость на небольших экранах смартфонов.</li>
+            </ul>
+        </div>
+
+        <div class="install-section">
+            <p class="requirements">Требуется расширение <strong>Tampermonkey</strong> или <strong>Violentmonkey</strong></p>
+            
+            <!-- Ссылка на raw файл скрипта -->
+            <a class="install-button" href="https://github.com/MubaraksaGen/t2iti_horizontal_week/raw/refs/heads/main/t2iti-horizontal-week.user.js" target="_blank" rel="noopener noreferrer">
+                Установить скрипт
+            </a>
+            
+            <p style="font-size: 13px; color: #888; margin-top: 15px;">
+                Нажмите кнопку выше, и менеджер скриптов предложит установку.
+            </p>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ Важно:</strong><br>
+            Если после обновления сайта скрипт перестанет работать корректно, пожалуйста, отключите его в настройках Tampermonkey и сообщите разработчику.
+        </div>
+
+        <footer>
+            <p>Разработчик: <strong>Ильин Евгений</strong></p>
+            <p>GitHub: <a href="https://github.com/MubaraksaGen" target="_blank">@MubaraksaGen</a></p>
+            <p>&copy; 2026 Все права защищены.</p>
+        </footer>
     </div>
 </body>
 </html>
