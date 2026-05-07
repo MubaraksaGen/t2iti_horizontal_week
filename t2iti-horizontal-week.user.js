@@ -4,7 +4,7 @@
 // @version      1.16
 // @description  Принудительно отображает горизонтальную таблицу. Закреплен столбец времени. Текст центрирован. Перестановка кнопок через CSS.
 // @author       MubaraksaGen
-// @match        https://t2iti.khsu.ru/week*
+// @match        https://t2.iti-khsu.ru/week*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=khsu.ru
 // @grant        none
 // ==/UserScript==
