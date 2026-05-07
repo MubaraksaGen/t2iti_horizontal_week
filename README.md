@@ -18,8 +18,9 @@
 1. Установите Tampermonkey в ваш браузер.
 2. Нажмите на кнопку ниже, чтобы установить скрипт:
 
-[![Установить скрипт Tampermonkey]](https://github.com/MubaraksaGen/t2iti_horizontal_week/raw/refs/heads/main/t2iti-horizontal-week.user.js)
-[![Как установить]](https://greasyfork.org/ru/help/installing-user-scripts)
+[Установить скрипт Tampermonkey](https://github.com/MubaraksaGen/t2iti_horizontal_week/raw/refs/heads/main/t2iti-horizontal-week.user.js)
+
+[Как установить](https://greasyfork.org/ru/help/installing-user-scripts)
 
 ---
 **Примечание:** Если после обновления сайта скрипт перестанет работать — отключите его в настройках Tampermonkey.
